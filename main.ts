@@ -11,15 +11,7 @@ function drawSnake () {
         led.plot(pixel[0], pixel[1])
     }
 }
-let y = 0
-let snake: number[][] = []
-snake = []
-let direction = 2
-let sensitivity = 100
-let pauseTime = 750
-let x = -1
-let showDebug = false
-basic.forever(function () {
+function updateDirection () {
     // right
     if (input.acceleration(Dimension.X) > sensitivity) {
         direction = 2
@@ -48,6 +40,20 @@ basic.forever(function () {
             led.plot(2, 0)
         }
     }
+}
+let y = 0
+let showDebug = false
+let sensitivity = 0
+let direction = 0
+let snake: number[][] = []
+snake = []
+direction = 2
+sensitivity = 100
+let pauseTime = 750
+let x = -1
+showDebug = false
+basic.forever(function () {
+    updateDirection()
     if (direction == 1) {
         y += -1
     }
