@@ -1,3 +1,21 @@
+function moveSnake () {
+    if (direction == 1) {
+        y += -1
+    }
+    if (direction == 2) {
+        x += 1
+    }
+    if (direction == 3) {
+        y += 1
+    }
+    if (direction == 4) {
+        x += -1
+    }
+    snake.push([x, y])
+    if (snake.length > 4) {
+        snake.shift()
+    }
+}
 // for (let y = 0; y <= 4; y++) {
 // for (let x = 0; x <= 4; x++) {
 // let snake: Array[] = []
@@ -43,6 +61,7 @@ function updateDirection () {
 }
 let y = 0
 let showDebug = false
+let x = 0
 let sensitivity = 0
 let direction = 0
 let snake: number[][] = []
@@ -50,26 +69,11 @@ snake = []
 direction = 2
 sensitivity = 100
 let pauseTime = 750
-let x = -1
+x = -1
 showDebug = false
 basic.forever(function () {
     updateDirection()
-    if (direction == 1) {
-        y += -1
-    }
-    if (direction == 2) {
-        x += 1
-    }
-    if (direction == 3) {
-        y += 1
-    }
-    if (direction == 4) {
-        x += -1
-    }
-    snake.push([x, y])
-    if (snake.length > 4) {
-        snake.shift()
-    }
+    moveSnake()
     drawSnake()
     if (x < 0 || x > 4 || y < 0 || y > 4) {
         game.gameOver()
