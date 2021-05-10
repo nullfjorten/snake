@@ -11,12 +11,13 @@ function drawSnake () {
         led.plot(pixel[0], pixel[1])
     }
 }
-let x = 0
 let y = 0
 let snake: number[][] = []
 snake = []
 let direction = 2
 let sensitivity = 100
+let pauseTime = 750
+let x = -1
 let showDebug = false
 basic.forever(function () {
     // right
@@ -60,10 +61,13 @@ basic.forever(function () {
         x += -1
     }
     snake.push([x, y])
+    if (snake.length > 4) {
+        snake.shift()
+    }
     drawSnake()
     if (x < 0 || x > 4 || y < 0 || y > 4) {
         game.gameOver()
     }
-    basic.pause(1000)
+    basic.pause(pauseTime)
     basic.clearScreen()
 })
