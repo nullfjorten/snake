@@ -16,14 +16,6 @@ function moveSnake () {
         snake.shift()
     }
 }
-// for (let y = 0; y <= 4; y++) {
-// for (let x = 0; x <= 4; x++) {
-// let snake: Array[] = []
-// if (snake[y][x]) {
-// led.plot(x, y)
-// }
-// }
-// }
 function drawSnake () {
     for (let pixel of snake) {
         led.plot(pixel[0], pixel[1])
@@ -72,12 +64,12 @@ let pauseTime = 750
 x = -1
 showDebug = false
 basic.forever(function () {
+    basic.clearScreen()
     updateDirection()
     moveSnake()
-    drawSnake()
     if (x < 0 || x > 4 || y < 0 || y > 4) {
         game.gameOver()
     }
+    drawSnake()
     basic.pause(pauseTime)
-    basic.clearScreen()
 })
